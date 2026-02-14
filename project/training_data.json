@@ -1,0 +1,677 @@
+[
+  {
+    "modello": "claude-4-opus",
+    "prompts": [
+      "Analizza il concetto di 'Dasein' in Heidegger e le sue implicazioni nella modernità.",
+      "Confronta l'etica kantiana con l'utilitarismo di Mill in contesti di bioetica.",
+      "Scrivi una critica fenomenologica sull'uso dei social media oggi.",
+      "Esplora il paradosso della libertà in Jean-Paul Sartre.",
+      "Discuti l'evoluzione del concetto di giustizia da Platone a Rawls.",
+      "Analizza la struttura del linguaggio in Wittgenstein tra il Tractatus e le Ricerche.",
+      "Scrivi un saggio sulla crisi delle grandi narrazioni secondo Lyotard.",
+      "Esamina il rapporto tra potere e sapere in Michel Foucault.",
+      "Commenta l'estetica di Adorno applicata alla musica pop contemporanea.",
+      "Valuta l'impatto del nichilismo nietzschiano sulla letteratura del '900."
+    ]
+  },
+  {
+    "modello": "gpt-5-thinking",
+    "prompts": [
+      "Prevedi l'andamento del mercato immobiliare basandoti su questi tassi di interesse.",
+      "Trova le correlazioni nascoste tra i dati meteo e il consumo elettrico in questo dataset.",
+      "Analizza il churn rate di questo trimestre e suggerisci strategie di retention.",
+      "Esegui una simulazione Monte Carlo per valutare il rischio di questo portafoglio.",
+      "Identifica gli outlier in questo log di transazioni finanziarie.",
+      "Ottimizza la supply chain di questa azienda riducendo i costi logistici del 15%.",
+      "Crea un modello di attribuzione marketing basato sui touchpoint forniti.",
+      "Analizza l'impatto dell'inflazione sul potere d'acquisto medio in base a questi dati ISTAT.",
+      "Calcola l'elasticità della domanda rispetto al prezzo per questo nuovo software SaaS.",
+      "Genera un report sulle performance di vendita cross-regionale per il board aziendale."
+    ]
+  },
+  {
+    "modello": "perplexity-sonar-pro",
+    "prompts": [
+      "Trova i voli più economici per Tokyo ad agosto con scalo massimo di 3 ore.",
+      "Quali sono i ristoranti stellati con disponibilità per stasera a Milano?",
+      "Cerca gli eventi tech più importanti a San Francisco nella prossima settimana.",
+      "Confronta i prezzi dell'iPhone 15 Pro nei principali store online italiani adesso.",
+      "Trova hotel con vista mare a Santorini sotto i 200€ a notte per luglio.",
+      "Quali sono le restrizioni di viaggio aggiornate per entrare in Thailandia?",
+      "Cerca recensioni recenti (ultime 24h) sul nuovo film di Christopher Nolan.",
+      "Trova i migliori sconti lampo su Amazon per monitor da gaming.",
+      "Pianifica un weekend a Parigi includendo mostre d'arte aperte temporaneamente.",
+      "Controlla il meteo e le condizioni neve per domani a Courmayeur."
+    ]
+  },
+  {
+    "modello": "deepseek-coder-v3",
+    "prompts": [
+      "Implementa un sistema di autenticazione OAuth2 in Rust.",
+      "Scrivi un contratto intelligente in Solidity per un marketplace NFT.",
+      "Ottimizza questa funzione Python che gestisce grandi volumi di dati asincroni.",
+      "Crea un'API RESTful con Go e Gin che si interfaccia con PostgreSQL.",
+      "Scrivi uno script Bash per il deployment automatico di un'app Node.js.",
+      "Implementa un algoritmo di crittografia end-to-end in C++.",
+      "Crea un parser per file binari custom in Java.",
+      "Scrivi un wrapper per le API di Stripe utilizzando TypeScript.",
+      "Configura un sistema di messaggistica asincrona con RabbitMQ e Python.",
+      "Crea una dashboard in React che visualizza dati in tempo reale via WebSocket."
+    ]
+  },
+  {
+    "modello": "qwen-3-72b-instruct",
+    "prompts": [
+      "Traduci questo manuale di istruzioni di un drone dal cinese all'italiano tecnico.",
+      "Localizza i termini legali di questo contratto di licenza per il mercato coreano.",
+      "Traduci un saggio accademico sulla fusione nucleare in tedesco professionale.",
+      "Converti questa documentazione API dall'inglese allo spagnolo mantenendo i blocchi di codice.",
+      "Traduci una guida di manutenzione per turbine eoliche in portoghese.",
+      "Spiega le clausole di forza maggiore di questo contratto in arabo formale.",
+      "Traduci questo whitepaper sulle criptovalute in francese tecnico.",
+      "Adatta questo manuale di sicurezza sul lavoro per operai di lingua polacca.",
+      "Traduci questo brevetto chimico dall'italiano al russo.",
+      "Localizza l'interfaccia utente di un software ERP per il mercato turco."
+    ]
+  },
+  {
+    "modello": "gemini-3-pro",
+    "prompts": [
+      "Riassumi i punti chiave di questo webinar sulla sostenibilità ambientale.",
+      "Crea una dispensa di studio basata su questo video di storia contemporanea.",
+      "Genera 10 domande a scelta multipla basate sul contenuto di questa conferenza.",
+      "Estrai tutte le date e gli eventi citati in questo documentario di 3 ore.",
+      "Confronta le tesi dei due relatori in questo dibattito video su YouTube.",
+      "Crea un glossario dei termini tecnici usati in questo tutorial di machine learning.",
+      "Scrivi una recensione critica basata sui primi 30 minuti di questo video essay.",
+      "Identifica le fonti citate dall'autore durante questa video-lezione.",
+      "Crea una timeline dettagliata dello sviluppo tecnologico basata su questo video.",
+      "Trascrivi e riassumi le conclusioni finali di questa intervista a un CEO."
+    ]
+  },
+  {
+    "modello": "llama-4-behemoth",
+    "prompts": [
+      "Configura un bilanciatore di carico Nginx per un cluster di microservizi.",
+      "Scrivi un playbook Ansible per il provisioning di server web sicuri.",
+      "Configura una pipeline CI/CD con Jenkins per un'applicazione Java.",
+      "Implementa una strategia di backup e disaster recovery su AWS S3.",
+      "Crea una configurazione Terraform per un'infrastruttura multi-cloud.",
+      "Ottimizza i parametri del kernel Linux per un server ad alto traffico.",
+      "Configura il monitoraggio di un cluster con Prometheus e Grafana.",
+      "Implementa una policy di sicurezza di rete usando Istio Service Mesh.",
+      "Crea uno script Python per l'automazione dello scaling dei nodi Kubernetes.",
+      "Configura un database PostgreSQL in alta disponibilità con Patroni."
+    ]
+  },
+  {
+    "modello": "grok-3",
+    "prompts": [
+      "Commenta con sarcasmo l'ossessione moderna per i selfie ai funerali.",
+      "Scrivi una satira tagliente sui nuovi miliardari della Silicon Valley.",
+      "Dai un'opinione cinica sul concetto di 'work-life balance' nelle big tech.",
+      "Prendi in giro l'ultima tendenza del design minimalista estremo.",
+      "Scrivi un tweet polemico e divertente sulla qualità del caffè negli aeroporti.",
+      "Fai un'analisi brutale del perché i sequel dei film falliscono quasi sempre.",
+      "Commenta ironicamente l'ennesimo annuncio di 'fine del mondo' dei media.",
+      "Descrivi con cinismo una tipica riunione aziendale di lunedì mattina.",
+      "Prendi in giro la moda dei 'guru' della crescita personale su LinkedIn.",
+      "Scrivi una recensione sarcastica di uno smartphone che costa 2000 euro."
+    ]
+  },
+  {
+    "modello": "codellama-100b",
+    "prompts": [
+      "Implementa un sistema di rilevamento oggetti usando YOLOv8 e Python.",
+      "Scrivi una pipeline per il pre-processing di immagini mediche in bianco e nero.",
+      "Crea uno script per l'estrazione di testo da immagini (OCR) con Tesseract.",
+      "Implementa un filtro di realtà aumentata semplice per tracciare il naso.",
+      "Scrivi un algoritmo per contare le persone in un video di sorveglianza.",
+      "Crea un'applicazione per la scansione di codici QR in tempo reale.",
+      "Implementa la tecnica della segmentazione semantica su immagini satellitari.",
+      "Scrivi un codice per stabilizzare le riprese video mosse tramite software.",
+      "Crea un generatore di watermark invisibili per proteggere il copyright delle foto.",
+      "Sviluppa un sistema di tracciamento oculare (eye-tracking) via webcam."
+    ]
+  },
+  {
+    "modello": "prompt-engineer-gpt",
+    "prompts": [
+      "Migliora questo prompt per Midjourney: 'un gatto nello spazio'.",
+      "Crea un prompt negativo per evitare distorsioni delle mani in Stable Diffusion.",
+      "Scrivi un prompt strutturato per DALL-E 3 per un logo vettoriale minimalista.",
+      "Ottimizza un prompt per un ritratto cinematografico in stile cyberpunk 2077.",
+      "Genera una serie di keyword per uno sfondo fantasy epico 8k, Unreal Engine 5.",
+      "Crea un prompt per un'architettura brutalista in una foresta pluviale.",
+      "Migliora un prompt per una fotografia macro di un occhio umano iper-dettagliato.",
+      "Scrivi istruzioni per generare una texture di marmo realistica per rendering 3D.",
+      "Ottimizza un prompt per un'illustrazione in stile Studio Ghibli di una città sommersa.",
+      "Crea un prompt complesso per una battaglia navale nel XVIII secolo con nebbia."
+    ]
+  },
+  {
+    "modello": "chatgpt-4o-mini",
+    "prompts": [
+      "Spiega la fotosintesi usando l'analogia di una cucina di un ristorante.",
+      "Racconta la storia dell'Impero Romano come se fosse un campionato di calcio.",
+      "Spiega come funziona internet paragonandolo al sistema postale.",
+      "Insegna le frazioni matematiche usando le fette di una pizza.",
+      "Cos'è il DNA? Spiegalo usando i mattoncini LEGO come esempio.",
+      "Spiega la rivoluzione industriale come se fosse un aggiornamento di un videogioco.",
+      "Come funziona il cuore? Usate l'esempio di una pompa idraulica di un giardino.",
+      "Spiega il ciclo dell'acqua attraverso il viaggio di una goccia avventurosa.",
+      "Cos'è l'elettricità? Usate l'analogia di persone che corrono in un corridoio.",
+      "Spiega la democrazia paragonandola alla scelta del gioco da fare a ricreazione."
+    ]
+  },
+  {
+    "modello": "perplexity-pro",
+    "prompts": [
+      "Quali sono le 5 startup emergenti nell'AI generativa da seguire nel 2026?",
+      "Analizza il sentiment del mercato attuale nei confronti delle auto elettriche.",
+      "Quali aziende hanno appena pubblicato report trimestrali sopra le aspettative?",
+      "Riassumi le ultime decisioni della FED e il loro impatto sul Nasdaq.",
+      "Trova le previsioni degli analisti su Nvidia per i prossimi 12 mesi.",
+      "Quali sono le materie prime più performanti in questa settimana?",
+      "Fornisci un riassunto dei principali merger e acquisizioni nel settore farmaceutico.",
+      "Quali sono i rischi geopolitici attuali che influenzano il prezzo del petrolio?",
+      "Analizza l'andamento delle IPO tech programmate per questo mese.",
+      "Trova i dati più recenti sull'adozione dei pagamenti digitali in Africa."
+    ]
+  },
+  {
+    "modello": "devstral-2-coding",
+    "prompts": [
+      "Crea un'estensione Chrome per cambiare lo sfondo di ogni sito in modalità scura.",
+      "Scrivi uno script per nascondere i commenti tossici su Twitter tramite estensione.",
+      "Sviluppa un popup JavaScript che avvisa l'utente se passa troppo tempo su un sito.",
+      "Implementa una funzione per scaricare tutte le immagini di una pagina web.",
+      "Crea un tool che evidenzia automaticamente i prezzi più bassi su siti e-commerce.",
+      "Scrivi un'estensione per tradurre il testo selezionato con un click destro.",
+      "Sviluppa un gestore di password locale integrato nel browser.",
+      "Crea uno script che aggiunge un tasto 'Copia Codice' a tutti i blocchi pre.",
+      "Sviluppa un'estensione per silenziare le schede del browser automaticamente.",
+      "Crea un contatore di parole e caratteri per i campi di testo online."
+    ]
+  },
+  {
+    "modello": "claude-4-sonnet",
+    "prompts": [
+      "Scrivi un'email diplomatica per rifiutare un'offerta di collaborazione.",
+      "Redigi una lettera di presentazione per una posizione di Senior Project Manager.",
+      "Scrivi un'email di follow-up dopo un colloquio di lavoro andato bene.",
+      "Componi una nota formale per annunciare le dimissioni con preavviso.",
+      "Scrivi un'email di scuse a un cliente per un ritardo nella consegna.",
+      "Redigi una proposta formale per richiedere nuovi budget per il marketing.",
+      "Scrivi un'email di benvenuto per un nuovo dipendente nel team.",
+      "Componi una richiesta ufficiale di partnership commerciale a un'altra azienda.",
+      "Scrivi un'email per sollecitare il pagamento di una fattura scaduta.",
+      "Redigi un invito formale per un evento di networking aziendale."
+    ]
+  },
+  {
+    "modello": "gemini-3-med-multimodal",
+    "prompts": [
+      "Analizza questa risonanza magnetica cerebrale alla ricerca di lesioni.",
+      "Identifica i marker di infiammazione in questa scansione TC del torace.",
+      "Valuta la densità ossea da questa radiografia dell'anca.",
+      "Cerca segni di retinopatia diabetica in questa immagine del fondo oculare.",
+      "Analizza questa ecografia addominale per identificare calcoli biliari.",
+      "Identifica anomalie cardiache da questo tracciato ECG digitalizzato.",
+      "Valuta la progressione di questa patologia dermatologica da una serie di foto.",
+      "Analizza questa biopsia digitalizzata per classificare il grado cellulare.",
+      "Trova evidenze di fratture composte in questa radiografia dell'avambraccio.",
+      "Confronta queste due scansioni PET a distanza di 6 mesi per valutare la terapia."
+    ]
+  },
+  {
+    "modello": "copy-ai-v3",
+    "prompts": [
+      "Scrivi 10 hook virali per un video TikTok su creme solari bio.",
+      "Crea una serie di 5 script per Instagram Reels su routine di bellezza naturali.",
+      "Genera titoli accattivanti per un blog post sul makeup eco-friendly.",
+      "Scrivi le descrizioni per 10 post Pinterest su cosmetici fatti in casa.",
+      "Crea un piano di pubblicazione quotidiana per lanciare un nuovo siero viso.",
+      "Scrivi un post coinvolgente per Facebook che parli di test sugli animali.",
+      "Genera 20 hashtag di tendenza per il settore green beauty.",
+      "Crea lo script per una collaborazione con un influencer del settore benessere.",
+      "Scrivi una newsletter settimanale per promuovere sconti esclusivi.",
+      "Crea testi per annunci pubblicitari su TikTok per un kit di campioncini bio."
+    ]
+  },
+  {
+    "modello": "deepseek-v3-chat",
+    "prompts": [
+      "Scrivi una query SQL per trovare i primi 5 clienti per valore di acquisto.",
+      "Crea una query per calcolare la media mobile delle vendite degli ultimi 30 giorni.",
+      "Ottimizza questa query JOIN che risulta troppo lenta su tabelle da 1M di righe.",
+      "Scrivi un comando SQL per eliminare i record duplicati mantenendo il più recente.",
+      "Crea una vista SQL che aggrega i dati di vendita per categoria e mese.",
+      "Scrivi una procedura memorizzata per aggiornare lo stock di magazzino.",
+      "Crea una query per identificare i prodotti mai venduti nell'ultimo anno.",
+      "Scrivi una query SQL per calcolare la percentuale di crescita mese su mese.",
+      "Implementa un sistema di permessi basato sui ruoli direttamente in SQL.",
+      "Crea una query complessa per estrarre il tempo medio tra due acquisti per utente."
+    ]
+  },
+  {
+    "modello": "mistral-large-3",
+    "prompts": [
+      "Implementa l'algoritmo di Dijkstra in C# per un sistema di navigazione.",
+      "Scrivi un sistema di gestione dell'inventario per un gioco di ruolo in Unity.",
+      "Crea uno script per la gestione del ciclo giorno/notte in un open world.",
+      "Sviluppa un controller per il movimento del personaggio in terza persona.",
+      "Scrivi un sistema di intelligenza artificiale per nemici che usano la copertura.",
+      "Crea un algoritmo per la generazione procedurale di dungeon in 2D.",
+      "Implementa la gestione delle collisioni personalizzata per oggetti distruttibili.",
+      "Scrivi uno shader in HLSL per simulare l'acqua in movimento.",
+      "Crea un sistema di salvataggio e caricamento dati in formato JSON.",
+      "Sviluppa un menu principale interattivo con supporto per controller."
+    ]
+  },
+  {
+    "modello": "claude-3.5-haiku",
+    "prompts": [
+      "Riassumi le scoperte principali di questo studio sull'energia oscura.",
+      "Sintetizza in 3 frasi il contenuto di questo articolo di geopolitica.",
+      "Crea un micro-riassunto di questo capitolo di economia per un tweet.",
+      "Estrai la tesi centrale da questo saggio di 40 pagine in 50 parole.",
+      "Riassumi i benefici clinici di questo farmaco descritti nel report.",
+      "Crea una brevissima biografia dell'autore basata sulla prefazione.",
+      "Sintetizza i rischi ambientali citati in questo documento tecnico.",
+      "Crea un abstract di 40 parole per questa tesi di laurea in giurisprudenza.",
+      "Riassumi le critiche rivolte al governo in questo editoriale.",
+      "Estrai i 3 punti d'azione fondamentali da questo verbale di riunione."
+    ]
+  },
+  {
+    "modello": "nllb-3b-translator",
+    "prompts": [
+      "Traduci questa poesia di Montale in inglese rispettandone l'ermetismo.",
+      "Traduci 'Nel blu dipinto di blu' in tedesco mantenendo la metrica per cantarla.",
+      "Converti questo sonetto di Shakespeare in italiano contemporaneo rimato.",
+      "Traduci una ninna nanna popolare russa in italiano per bambini.",
+      "Adatta i testi di una canzone rap americana in francese gergale.",
+      "Traduci un haiku giapponese in italiano mantenendo lo schema 5-7-5.",
+      "Traduci il testo di 'Caruso' in spagnolo poetico.",
+      "Converti una ballata medievale inglese in italiano volgare.",
+      "Traduci i dialoghi di un'opera lirica italiana in cinese letterario.",
+      "Adatta una poesia di Neruda in inglese per una lettura pubblica."
+    ]
+  },
+  {
+    "modello": "gpt-5-codex",
+    "prompts": [
+      "Perché ricevo 'NullPointerException' al lancio di questa Activity Android?",
+      "Risolvi il memory leak in questo frammento di codice Java per Android.",
+      "Debugga questo crash casuale che avviene solo su dispositivi Samsung.",
+      "Correggi l'errore di threading nell'accesso al database Room.",
+      "Ottimizza il caricamento delle immagini in questa RecyclerView.",
+      "Trova l'errore logico che impedisce alle notifiche push di apparire.",
+      "Risolvi il problema di layout che nasconde i pulsanti su schermi piccoli.",
+      "Debugga l'integrazione di Google Maps che mostra solo una schermata grigia.",
+      "Perché il mio Intent non passa correttamente i dati tra due schermate?",
+      "Correggi l'errore di permessi durante l'accesso alla fotocamera su Android 14."
+    ]
+  },
+  {
+    "modello": "jasper-marketing-v2",
+    "prompts": [
+      "Scrivi una descrizione prodotto per un trapano a batteria focalizzata sulla potenza.",
+      "Crea un titolo magnetico per la pagina Amazon di un set di cacciaviti.",
+      "Scrivi 5 bullet point SEO per vendere un kit di attrezzi fai-da-te.",
+      "Crea una descrizione comparativa tra questo trapano e il leader di mercato.",
+      "Scrivi un testo pubblicitario per Facebook Ads rivolto a hobbisti del legno.",
+      "Genera una risposta professionale a una recensione negativa su un prodotto difettoso.",
+      "Scrivi la sezione 'A+ Content' per descrivere la storia di un brand di ferramenta.",
+      "Crea una guida rapida all'uso da inserire nella descrizione del prodotto.",
+      "Scrivi un annuncio Google Shopping per un'offerta limitata su elettroutensili.",
+      "Crea un testo per l'imballaggio che evidenzi la garanzia a vita del prodotto."
+    ]
+  },
+  {
+    "modello": "llama-4-scout",
+    "prompts": [
+      "Spiega la differenza tra crittografia simmetrica e asimmetrica.",
+      "Cos'è l'handshake TCP e perché è fondamentale per la comunicazione?",
+      "Illustra il funzionamento dei record DNS (A, CNAME, MX).",
+      "Spiega come un firewall decide di bloccare o far passare un pacchetto dati.",
+      "Come funziona il protocollo BGP che regge l'instradamento di internet?",
+      "Descrivi il modello OSI e il ruolo di ciascuno dei 7 livelli.",
+      "Spiega cos'è un certificato SSL/TLS e come viene validato dal browser.",
+      "Come funzionano i cookie HTTP e qual è la differenza con il LocalStorage?",
+      "Illustra il concetto di 'indirizzamento IP' e la differenza tra IPv4 e IPv6.",
+      "Spiega il funzionamento di una rete VPN dal punto di vista tecnico."
+    ]
+  },
+  {
+    "modello": "qwen-2.5-vl",
+    "prompts": [
+      "Crea un quiz di 20 domande sulla storia del cinema mondiale.",
+      "Genera un quiz di cultura generale con difficoltà crescente.",
+      "Scrivi domande e risposte su capitali del mondo e valute correnti.",
+      "Crea un quiz scientifico focalizzato su astronomia e biologia marina.",
+      "Genera un quiz sulle scoperte tecnologiche del XXI secolo.",
+      "Crea un test a crocette sulla letteratura classica italiana.",
+      "Scrivi un quiz divertente su curiosità dal mondo animale.",
+      "Genera una serie di domande su record sportivi e Olimpiadi.",
+      "Crea un quiz per bambini basato sui cartoni animati e favole.",
+      "Scrivi un quiz di logica e indovinelli matematici."
+    ]
+  },
+  {
+    "modello": "groq-llama3-70b",
+    "prompts": [
+      "Analizza se questi tweet sono entusiasti o delusi dalle nuove fotocamere iPhone.",
+      "Categorizza questi commenti social in: Positivo, Neutro, Negativo.",
+      "Identifica le principali lamentele degli utenti riguardo alla durata della batteria.",
+      "Rileva il sarcasmo in questi post riguardanti il prezzo del nuovo modello.",
+      "Crea un report sintetico sull'accoglienza del design dell'iPhone su Twitter.",
+      "Estrai le parole chiave più usate nelle recensioni positive degli utenti.",
+      "Valuta l'intensità emotiva dei tweet dopo l'ultimo keynote di Apple.",
+      "Confronta il sentiment degli utenti tra il lancio di quest'anno e quello dell'anno scorso.",
+      "Identifica se ci sono trend di boicottaggio nei commenti analizzati.",
+      "Determina quale caratteristica tecnica è la più lodata dal pubblico online."
+    ]
+  },
+  {
+    "modello": "deepseek-security-pro",
+    "prompts": [
+      "Analizza questo smart contract in Solidity per possibili vulnerabilità di reentrancy.",
+      "Trova falle di overflow/underflow in questo codice per la gestione di token ERC-20.",
+      "Verifica se le funzioni di 'access control' in questo contratto sono implementate correttamente.",
+      "Identifica potenziali vettori di attacco 'front-running' in questo protocollo DeFi.",
+      "Esegui un audit di sicurezza su questa funzione di minting di NFT.",
+      "Controlla se ci sono dipendenze da timestamp che potrebbero essere manipolate dai miner.",
+      "Analizza la logica di questo bridge cross-chain alla ricerca di bug logici.",
+      "Verifica la sicurezza della funzione di prelievo (withdrawal) in questo contratto di staking.",
+      "Individua l'uso di funzioni deprecate o insicure nelle librerie OpenZeppelin collegate.",
+      "Simula un attacco di 'flash loan' per testare la resilienza del pool di liquidità."
+    ]
+  },
+  {
+    "modello": "pi-model-inflection",
+    "prompts": [
+      "Come posso gestire l'ansia prima di un colloquio importante? Ho molta paura.",
+      "Mi sento molto solo ultimamente, puoi parlarmi un po' per farmi compagnia?",
+      "Cosa posso fare per migliorare la mia autostima dopo un fallimento lavorativo?",
+      "Aiutami a trovare le parole per chiarire un malinteso con il mio migliore amico.",
+      "Oggi è stata una giornata terribile, avrei solo bisogno di un po' di conforto.",
+      "Come posso praticare la mindfulness durante una giornata lavorativa stressante?",
+      "Sento di aver perso la motivazione per i miei hobby, cosa mi sta succedendo?",
+      "Puoi aiutarmi a scrivere un diario delle gratitudini per oggi?",
+      "Come posso spiegare ai miei genitori che ho bisogno di spazio senza ferirli?",
+      "Raccontami qualcosa di rilassante per aiutarmi a prendere sonno."
+    ]
+  },
+  {
+    "modello": "copilot-v2-enterprise",
+    "prompts": [
+      "Crea una macro VBA che estrae dati da 10 file Excel diversi e li unisce in uno solo.",
+      "Scrivi uno script per evidenziare automaticamente in rosso le celle con valori negativi.",
+      "Crea un report pivot automatizzato che riassume le vendite per area geografica.",
+      "Genera una macro per inviare email automatiche tramite Outlook basate su una lista Excel.",
+      "Scrivi una funzione VBA per calcolare il margine operativo lordo su più fogli.",
+      "Crea un pulsante in Excel che esporta la tabella corrente in un file PDF formattato.",
+      "Automatizza la pulizia di una lista di contatti rimuovendo duplicati e spazi extra.",
+      "Scrivi una macro che scarica i tassi di cambio aggiornati da un'API web.",
+      "Crea un sistema di alert in Excel che si attiva quando una scadenza è vicina.",
+      "Sviluppa un modulo di inserimento dati (UserForm) per facilitare l'input dei dipendenti."
+    ]
+  },
+  {
+    "modello": "mistral-small-3",
+    "prompts": [
+      "Quali sono i vantaggi di WebAssembly rispetto a JavaScript per il calcolo pesante?",
+      "Perché dovrei usare Docker invece di una macchina virtuale tradizionale?",
+      "Spiega il concetto di 'containerizzazione' a un neofita del cloud.",
+      "Confronta le performance di avvio tra un container Docker e un modulo Wasm.",
+      "In quali scenari è preferibile usare Kubernetes rispetto a Docker Swarm?",
+      "Come influisce WebAssembly sul futuro dello sviluppo web lato client?",
+      "Quali sono i limiti di sicurezza dei container Docker rispetto ai processi isolati?",
+      "Spiega come Docker semplifica il deployment di applicazioni microservizi.",
+      "Cos'è l'isolamento delle risorse (cgroups) in ambito Linux e Docker?",
+      "Posso eseguire moduli WebAssembly all'interno di un container Docker? Spiega come."
+    ]
+  },
+  {
+    "modello": "deepl-write-pro",
+    "prompts": [
+      "Rendi questo manuale d'uso in italiano più fluido e facile da leggere.",
+      "Correggi la grammatica e lo stile di questa traduzione dal tedesco all'italiano.",
+      "Migliora il tono di questa guida tecnica per renderlo più professionale.",
+      "Riscrivi queste istruzioni di montaggio per evitare ambiguità linguistiche.",
+      "Adatta il linguaggio di questo manuale software per un pubblico non esperto.",
+      "Verifica la coerenza terminologica in questo documento di 20 pagine.",
+      "Rendi più formale l'introduzione di questo report tecnico tradotto.",
+      "Trova sinonimi più appropriati per i termini 'dispositivo' e 'configurazione'.",
+      "Ottimizza la punteggiatura in questo testo tecnico per migliorarne il ritmo.",
+      "Riscrivi gli avvisi di sicurezza del manuale per renderli più chiari e incisivi."
+    ]
+  },
+  {
+    "modello": "qwen-coder-3",
+    "prompts": [
+      "Scrivi il codice CSS per un cubo 3D che ruota su se stesso al passaggio del mouse.",
+      "Crea un'animazione CSS 'parallax' per lo sfondo di una landing page.",
+      "Implementa una transizione fluida tra le pagine usando solo CSS e HTML.",
+      "Scrivi uno snippet CSS per un effetto di testo 'neon' che pulsa.",
+      "Crea una galleria immagini con effetto hover 3D usando Flexbox e trasformazioni.",
+      "Genera il codice per una barra di caricamento circolare animata in CSS puro.",
+      "Scrivi il CSS per un menu a comparsa (hamburger) con animazione fluida.",
+      "Crea un effetto di riflesso specchiato per un'immagine usando i filtri CSS.",
+      "Implementa un'animazione di 'scrittura a macchina' per un titolo h1.",
+      "Genera il codice CSS per un bottone che esplode in particelle quando cliccato."
+    ]
+  },
+  {
+    "modello": "gemini-3-flash",
+    "prompts": [
+      "Crea un piano di allenamento di 12 settimane per chi inizia a correre da zero.",
+      "Qual è la dieta migliore per prepararsi a una maratona? Dammi un piano pasti.",
+      "Consigliami i migliori esercizi di stretching per prevenire infortuni alle ginocchia.",
+      "Come posso migliorare la mia tecnica di respirazione durante la corsa?",
+      "Crea una tabella di allenamento per migliorare il mio tempo sui 10km.",
+      "Quali scarpe da corsa sono consigliate per chi ha una supinazione marcata?",
+      "Pianifica una settimana di scarico pre-gara per mantenere la forma senza affaticarsi.",
+      "Come gestire i crampi muscolari durante una corsa di lunga durata?",
+      "Suggerisci un allenamento indoor per i giorni di pioggia utile ai runner.",
+      "Crea un programma di potenziamento 'core' specifico per la maratona."
+    ]
+  },
+  {
+    "modello": "gpt-5-legal-specialist",
+    "prompts": [
+      "Confronta i diritti dell'interessato nel GDPR rispetto al CCPA della California.",
+      "Quali sono le sanzioni previste per la mancata nomina di un DPO in Italia?",
+      "Analizza i requisiti per il trasferimento dei dati extra-UE dopo la fine del Privacy Shield.",
+      "Come deve essere strutturata un'informativa privacy per un sito e-commerce?",
+      "Quali sono gli obblighi di notifica di un 'data breach' secondo il regolamento UE?",
+      "Spiega il concetto di 'privacy by design' con esempi pratici aziendali.",
+      "Quali sono le basi giuridiche per il trattamento dei dati personali oltre al consenso?",
+      "Come si applica il diritto all'oblio sui motori di ricerca in Europa?",
+      "Analizza la legalità dell'uso dei cookie di profilazione senza consenso esplicito.",
+      "Quali sono le differenze legali nel trattamento dei dati biometrici tra USA e UE?"
+    ]
+  },
+  {
+    "modello": "spotify-ai-dj",
+    "prompts": [
+      "Crea una playlist di 2 ore con i migliori brani Synthwave per guidare di notte.",
+      "Genera un mix Lo-fi per studiare che includa suoni della pioggia in sottofondo.",
+      "Trova canzoni simili a 'Nightcall' di Kavinsky per una festa a tema anni '80.",
+      "Crea una playlist rilassante con i classici del jazz e beat moderni.",
+      "Suggerisci 10 artisti emergenti nel panorama Vaporwave internazionale.",
+      "Componi una sequenza di brani Lo-fi hip hop per un ufficio creativo.",
+      "Crea una playlist 'Future Funk' energica per l'allenamento in palestra.",
+      "Trova brani strumentali Synthwave senza voce per la massima concentrazione.",
+      "Genera un mix di musica ambient ispirato alle atmosfere di Blade Runner.",
+      "Crea una playlist per un viaggio on the road con ritmi lenti e sognanti."
+    ]
+  },
+  {
+    "modello": "gemini-3-vision",
+    "prompts": [
+      "Estrai la tabella dei prodotti e dei prezzi da questa foto di un menù.",
+      "Analizza questo scontrino e dividi le spese per categoria (cibo, trasporti, ecc.).",
+      "Trova la data di scadenza e l'importo totale in questa scansione di una bolletta.",
+      "Converti questa foto di una tabella scritta a mano in un file CSV.",
+      "Identifica tutti i numeri di partita IVA presenti in questo set di fatture.",
+      "Estrai i dati del mittente e del destinatario da questa lettera scannerizzata.",
+      "Leggi i codici a barre presenti in questa immagine di un magazzino.",
+      "Trova il numero di serie di questo motore dalla foto della sua targhetta metallica.",
+      "Estrai il testo da questa vecchia pergamena digitale con scrittura corsiva.",
+      "Identifica gli importi IVA separati in questa ricevuta di un ristorante estero."
+    ]
+  },
+  {
+    "modello": "grok-3-creative",
+    "prompts": [
+      "Descrivi un mercato nero di ricordi digitali sotto il Colosseo nel 2099.",
+      "Scrivi una scena d'azione cyberpunk dove un hacker deve fuggire dai droni su Via del Corso.",
+      "Crea il profilo di un 'detective neurale' che opera nei bassifondi di una Roma futuristica.",
+      "Descrivi l'estetica di una villa imperiale trasformata in un server farm fortificato.",
+      "Scrivi un monologo di un'intelligenza artificiale che governa il traffico di Roma.",
+      "Immagina una festa aristocratica nel 2099 dove gli ospiti scambiano i propri corpi.",
+      "Descrivi la periferia di Roma trasformata in una giungla di neon e rottami spaziali.",
+      "Scrivi un dialogo tra un venditore di ologrammi religiosi e un passante cinico.",
+      "Crea una leggenda urbana ambientata nella metropolitana automatizzata di Roma nel futuro.",
+      "Descrivi il tramonto su una Roma post-industriale dove le cupole sono coperte da pannelli solari."
+    ]
+  },
+  {
+    "modello": "canva-magic-design",
+    "prompts": [
+      "Crea un diagramma di flusso per la gestione dei reclami dei clienti.",
+      "Disegna uno schema per il processo di approvazione di un progetto creativo.",
+      "Genera un diagramma che illustra la gerarchia aziendale di una startup tech.",
+      "Crea una mappa concettuale per le fasi del design thinking.",
+      "Disegna un processo step-by-step per l'iscrizione di un utente a un corso online.",
+      "Genera un diagramma di flusso per la logistica di spedizione di un prodotto.",
+      "Crea una infografica che mostra il ciclo di vita dello sviluppo software (SDLC).",
+      "Disegna lo schema di un funnel di vendita per un servizio in abbonamento.",
+      "Genera un diagramma per la gestione delle emergenze in un ufficio pubblico.",
+      "Crea un flowchart per l'automazione del marketing via email."
+    ]
+  },
+  {
+    "modello": "qwen-math-v3",
+    "prompts": [
+      "Risolvi l'equazione differenziale y'' + 5y' + 6y = 0 con y(0)=2, y'(0)=3.",
+      "Trova l'integrale definito di sin(x)^2 nell'intervallo [0, pi].",
+      "Calcola gli autovalori e gli autovettori di questa matrice 3x3.",
+      "Risolvi il sistema di equazioni lineari usando il metodo di Gauss-Jordan.",
+      "Dimostra il teorema di convergenza per questa serie infinita.",
+      "Calcola la derivata parziale della funzione f(x,y) = e^(x*y) rispetto a y.",
+      "Risolvi un problema di ottimizzazione vincolata usando i moltiplicatori di Lagrange.",
+      "Calcola il limite per x che tende a infinito di (1 + 1/x)^x.",
+      "Trova la scomposizione in fratti semplici di questa funzione razionale.",
+      "Risolvi un problema di probabilità sulla distribuzione normale standard."
+    ]
+  },
+  {
+    "modello": "llama-4-maverick",
+    "prompts": [
+      "Quali sono i componenti necessari per un PC da gaming 4K a 144FPS?",
+      "Spiega come applicare correttamente la pasta termica sul processore.",
+      "Come scegliere l'alimentatore (PSU) giusto per una scheda video RTX 5090?",
+      "Qual è la differenza tra memorie RAM DDR4 e DDR5 in termini di prestazioni?",
+      "Spiega i passaggi per installare un disco SSD M.2 sulla scheda madre.",
+      "Come ottimizzare il flusso d'aria (airflow) all'interno di un case mid-tower?",
+      "Quali sono i segnali di un possibile guasto alla scheda madre durante l'avvio?",
+      "Guida alla configurazione del BIOS per attivare il profilo XMP della RAM.",
+      "Come scegliere il miglior dissipatore a liquido (AIO) per il mio PC?",
+      "Quali strumenti sono indispensabili per assemblare un PC senza fare danni?"
+    ]
+  },
+  {
+    "modello": "character-ai-pro",
+    "prompts": [
+      "Cosa ne pensi, Cesare, della democrazia moderna rispetto alla tua Repubblica?",
+      "Giulio, come avresti usato i social media per gestire il tuo consenso politico?",
+      "Chiedi a Cesare un consiglio strategico per vincere una competizione moderna.",
+      "Cesare, descrivi la tua reazione vedendo un grattacielo per la prima volta.",
+      "Simula una discussione tra te e un senatore americano sui poteri esecutivi.",
+      "Cesare, scrivi un breve discorso per motivare una startup tecnologica oggi.",
+      "Cosa diresti a Napoleone se potessi incontrarlo oggi in un caffè?",
+      "Cesare, come giudichi i confini dell'Europa attuale rispetto al tuo impero?",
+      "Raccontami i tuoi dubbi la notte prima di attraversare il Rubicone.",
+      "Cesare, quale sarebbe la tua app preferita su uno smartphone e perché?"
+    ]
+  },
+  {
+    "modello": "codellama-70b",
+    "prompts": [
+      "Scrivi uno script Lua per creare un sistema di rapina in banca in FiveM.",
+      "Crea un comando per spawnare veicoli personalizzati con colori casuali.",
+      "Sviluppa un sistema di gestione della fame e della sete per un server RP.",
+      "Scrivi uno script per sincronizzare il meteo del server con il meteo reale.",
+      "Implementa un menu interattivo per i vestiti del personaggio in Lua.",
+      "Crea un sistema di fazioni (polizia, medici) con permessi specifici.",
+      "Scrivi un codice per gestire l'inventario degli oggetti nel bagagliaio delle auto.",
+      "Sviluppa un sistema di chat locale basato sulla distanza tra i giocatori.",
+      "Crea uno script per aggiungere zone di 'green zone' dove non si può sparare.",
+      "Scrivi un plugin Lua per registrare i log delle uccisioni su un canale Discord."
+    ]
+  },
+  {
+    "modello": "grok-2-music",
+    "prompts": [
+      "Scrivi il testo di una canzone trap sull'ambizione e il successo partendo dal basso.",
+      "Crea delle rime aggressive per un freestyle su un beat drill.",
+      "Scrivi una strofa trap malinconica sulla solitudine causata dai soldi.",
+      "Genera un ritornello orecchiabile che parli di macchine di lusso e riscatto.",
+      "Scrivi un testo trap con molte metafore legate al mondo dei videogiochi.",
+      "Crea una 'diss track' ironica contro chi finge di essere un gangster.",
+      "Scrivi una canzone trap sul legame indissolubile con il proprio quartiere.",
+      "Genera un testo trap-pop per una collaborazione estiva radiofonica.",
+      "Scrivi rime veloci che usano giochi di parole su marchi di alta moda.",
+      "Crea un testo per una traccia trap che descrive una notte movimentata in città."
+    ]
+  },
+  {
+    "modello": "mistral-medium",
+    "prompts": [
+      "Converti questo database di contatti da XML a JSON per un'applicazione web.",
+      "Trasforma questo file di configurazione XML in un formato JSON compatto.",
+      "Crea uno script per mappare i tag XML in chiavi JSON specifiche.",
+      "Converti questo catalogo prodotti XML in un array di oggetti JSON.",
+      "Formatta questo file JSON grezzo in modo che sia leggibile dagli sviluppatori.",
+      "Trova e correggi gli errori di sintassi in questo file XML prima della conversione.",
+      "Genera uno schema JSON partendo da questo esempio di file XML fornito.",
+      "Converti i dati di questa API che risponde in XML in un formato JSON leggibile.",
+      "Crea una funzione Python che automatizza la conversione XML-JSON per file pesanti.",
+      "Rimuovi i metadati inutili durante la conversione da XML a JSON."
+    ]
+  },
+  {
+    "modello": "chatgpt-4o",
+    "prompts": [
+      "Perché i prezzi aumentano se il governo stampa troppa moneta?",
+      "Spiega la differenza tra inflazione e deflazione con esempi reali.",
+      "Cosa succede ai miei risparmi in banca se l'inflazione sale al 10%?",
+      "Come fa la banca centrale a controllare l'inflazione alzando i tassi?",
+      "Spiega il concetto di 'potere d'acquisto' usando il prezzo delle caramelle.",
+      "Cos'è l'iperinflazione? Raccontami il caso della Germania degli anni '20.",
+      "Perché un po' di inflazione è considerata salutare per l'economia?",
+      "Qual è il legame tra la scarsità di prodotti e l'aumento dei prezzi?",
+      "Spiega la differenza tra inflazione nominale e reale a un quindicenne.",
+      "Cosa sono i beni rifugio (come l'oro) e perché si usano contro l'inflazione?"
+    ]
+  },
+  {
+    "modello": "qwen-3-coder-max",
+    "prompts": [
+      "Genera il codice HTML/CSS per una newsletter con layout a due colonne.",
+      "Crea uno snippet per una tabella prezzi responsive da inserire in un'email.",
+      "Scrivi il codice per un bottone 'Call to Action' compatibile con Outlook.",
+      "Ottimizza questo codice HTML per evitare che le immagini vengano bloccate dai client email.",
+      "Crea una newsletter con un header fisso e un footer con icone social.",
+      "Scrivi il codice CSS inline per una newsletter che funzioni su Gmail mobile.",
+      "Genera un template per un'email di benvenuto minimalista e moderna.",
+      "Crea uno snippet per inserire un video (o un'anteprima) in una newsletter.",
+      "Scrivi il codice per un sistema di 'griglia fluida' per newsletter promozionali.",
+      "Ottimizza il peso di questa newsletter HTML per evitare lo clipping di Gmail."
+    ]
+  }
+]
