@@ -1,6 +1,6 @@
 """
 Punto di ingresso per il Sistema Router AI.
-Ottimizzato per Raspberry Pi 5 (cartella dedicata).
+Unisce le migliori caratteristiche dei progetti originali.
 """
 import logging
 import sys
@@ -29,20 +29,23 @@ logger = logging.getLogger(__name__)
 
 
 def main() -> None:
-    logger.info("=" * 50)
-    logger.info("Avvio Sistema Router AI (Pi 5)")
-    logger.info("=" * 50)
+    logger.info("=" * 60)
+    logger.info("Avvio del Sistema Router AI Unificato")
+    logger.info("=" * 60)
 
     config = Config()
     model_cache = ModelCache()
 
     if should_retrain(config):
-        logger.info("Addestramento in corso...")
+        logger.info("Addestramento del modello in corso...")
         success, message = train_model(config, model_cache)
         if not success:
-            logger.error("Addestramento fallito: %s", message)
+            logger.error(f"Addestramento fallito: {message}")
+            logger.error(
+                "Verifica che training_data.json esista con la struttura corretta"
+            )
             return
-        logger.info("%s", message)
+        logger.info(message)
     else:
         model_cache.get_classifier(config.CLASSIFIER_PATH)
         model_cache.get_label_encoder(config.ENCODER_PATH)
@@ -51,6 +54,12 @@ def main() -> None:
         logger.info("Ollama disponibile")
     else:
         logger.warning("Ollama non disponibile - miglioramento prompt disabilitato")
+
+    logger.info("Avvio dell'interfaccia Gradio")
+    logger.info(
+        f"Accedi a http://{config.GRADIO_SERVER_NAME}:{config.GRADIO_SERVER_PORT}"
+    )
+    logger.info("=" * 60)
 
     interface = create_gradio_interface(config, model_cache)
     interface.launch(

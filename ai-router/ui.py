@@ -1,372 +1,186 @@
-"""Interfaccia Gradio – AI Router: tema dark, minimal, premium."""
-import html
 import logging
-from typing import Any, Dict, Tuple
+from typing import Tuple
+import requests
 
 import gradio as gr
 
 from cache import ModelCache
 from config import Config
-from ollama_service import improve_prompt_with_ollama
-from predictor import predict_model
+from predictor import predict_model, format_prediction_output
 
 logger = logging.getLogger(__name__)
 
-# ——— Palette & CSS (dark, neon soft) ———
-ACCENT = "#6366f1"       # indigo/soft violet
-ACCENT_HOVER = "#818cf8"
-ACCENT_SECONDARY = "#22d3ee"  # cyan
-BG_DARK = "#0f0f12"
-BG_CARD = "#18181c"
-BG_INPUT = "#1c1c22"
-BORDER = "#2a2a32"
-TEXT = "#f4f4f5"
-TEXT_MUTED = "#a1a1aa"
-SUCCESS = "#34d399"
-ERROR = "#f87171"
 
-CUSTOM_CSS = f"""
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+def improve_prompt_with_tinyllama(prompt: str, config: Config) -> str:
+    """Migliora il prompt usando TinyLlama."""
+    if not prompt or not prompt.strip():
+        return prompt
 
-.gradio-container {{
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  background: {BG_DARK} !important;
-  color: {TEXT} !important;
-  min-height: 100vh;
-}}
+    try:
+        url = f"{config.OLLAMA_BASE_URL}/api/generate"
 
-/* Root blocks */
-.contain {{
-  max-width: 1000px !important;
-  margin: 0 auto !important;
-  padding: 0 1.5rem 2rem !important;
-}}
+        improvement_instruction = f"""Migliora questo prompt per renderlo più chiaro, specifico e efficace.
+Mantieni il significato originale ma rendi il prompt più dettagliato e preciso.
+Prompt originale: {prompt}
 
-/* Header */
-.app-header {{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1.25rem 0;
-  border-bottom: 1px solid {BORDER};
-  margin-bottom: 2rem;
-}}
-.app-logo {{
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: {TEXT};
-  margin: 0;
-}}
-.app-logo span {{ color: {ACCENT}; }}
-.status-pill {{
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  background: {BG_CARD};
-  border: 1px solid {BORDER};
-  color: {TEXT_MUTED};
-}}
-.status-pill::before {{
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: {SUCCESS};
-  animation: pulse 2s ease-in-out infinite;
-}}
-@keyframes pulse {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0.5; }} }}
+Risposta: Fornisci solo il prompt migliorato senza ulteriori spiegazioni."""
 
-/* Cards */
-.card {{
-  background: {BG_CARD};
-  border: 1px solid {BORDER};
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1rem;
-}}
-.card-title {{
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: {TEXT_MUTED};
-  margin-bottom: 0.75rem;
-}}
+        payload = {
+            "model": config.OLLAMA_MODEL,
+            "prompt": improvement_instruction,
+            "stream": False,
+        }
 
-/* Textarea override */
-.gr-box {{
-  background: {BG_INPUT} !important;
-  border: 1px solid {BORDER} !important;
-  border-radius: 10px !important;
-  color: {TEXT} !important;
-  transition: border-color 0.2s, box-shadow 0.2s !important;
-}}
-.gr-box:focus-within {{
-  border-color: {ACCENT} !important;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
-}}
-.gr-box textarea {{
-  background: transparent !important;
-  color: {TEXT} !important;
-}}
-.gr-box .placeholder {{
-  color: {TEXT_MUTED} !important;
-}}
+        response = requests.post(
+            url,
+            json=payload,
+            timeout=config.OLLAMA_TIMEOUT,
+        )
 
-/* Buttons */
-.gr-button {{
-  font-family: inherit !important;
-  font-weight: 600 !important;
-  border-radius: 10px !important;
-  transition: all 0.2s ease !important;
-  border: none !important;
-}}
-.gr-button-primary {{
-  background: {ACCENT} !important;
-  color: white !important;
-}}
-.gr-button-primary:hover {{
-  background: {ACCENT_HOVER} !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
-}}
-.gr-button-secondary {{
-  background: {BG_CARD} !important;
-  color: {TEXT} !important;
-  border: 1px solid {BORDER} !important;
-}}
-.gr-button-secondary:hover {{
-  background: {BORDER} !important;
-  border-color: {TEXT_MUTED} !important;
-}}
+        if response.status_code == 200:
+            result = response.json()
+            improved = result.get("response", "").strip()
+            return improved if improved else prompt
+        else:
+            logger.warning(f"TinyLlama API error: {response.status_code}")
+            return prompt
 
-/* Accordion / blocks */
-.gr-form {{
-  border: none !important;
-  background: transparent !important;
-}}
-.gr-padded {{
-  padding: 0.5rem 0 !important;
-}}
-footer.gradio-footer {{ display: none !important; }}
-"""
-
-
-def _escape(s: str) -> str:
-    return html.escape(s) if s else ""
-
-
-def format_prediction_html(result: Dict[str, Any], config: Config) -> str:
-    """Output routing come HTML per tema dark."""
-    if not result.get("success"):
-        err = _escape(result.get("error", "Unknown error"))
-        return f"""
-        <div class="card" style="border-color: rgba(248,113,113,0.4);">
-          <div class="card-title" style="color: {ERROR};">Routing failed</div>
-          <p style="margin:0; color: {TEXT_MUTED};">{err}</p>
-        </div>
-        """
-    model = _escape(str(result["predicted_model"]))
-    conf = result["confidence"]
-    conf_pct = int(round(conf * 100))
-    low_conf = conf < config.CONFIDENCE_THRESHOLD
-    # Top N come lista compatta
-    probs = result.get("all_probabilities") or {}
-    sorted_probs = sorted(probs.items(), key=lambda x: x[1], reverse=True)[: config.TOP_N_PREDICTIONS]
-    bars = ""
-    for i, (m, p) in enumerate(sorted_probs):
-        pct = int(round(p * 100))
-        bar_w = max(2, pct)
-        is_selected = m == result["predicted_model"]
-        bar_color = ACCENT if is_selected else BORDER
-        bars += f"""
-        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
-          <span style="flex:0 0 140px;font-size:0.8125rem;color:{TEXT if is_selected else TEXT_MUTED};font-weight:{'600' if is_selected else '400'};">{_escape(str(m))}</span>
-          <div style="flex:1;height:6px;background:{BORDER};border-radius:3px;overflow:hidden;">
-            <div style="width:{bar_w}%;height:100%;background:{bar_color};border-radius:3px;transition:width 0.3s ease;"></div>
-          </div>
-          <span style="font-size:0.8125rem;color:{TEXT_MUTED};width:2.5rem;">{pct}%</span>
-        </div>
-        """
-    reason = "High confidence match." if not low_conf else f"Confidence below {config.CONFIDENCE_THRESHOLD:.0%}. Consider optimizing the prompt for a better fit."
-    return f"""
-    <div class="card">
-      <div class="card-title">Selected model</div>
-      <div style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 0.75rem;background:rgba(99,102,241,0.15);border:1px solid {ACCENT};border-radius:8px;margin-bottom:1rem;">
-        <span style="font-weight:600;color:{ACCENT};">{model}</span>
-        <span style="font-size:0.8125rem;color:{TEXT_MUTED};">{conf_pct}% confidence</span>
-      </div>
-      <div class="card-title">Why this model</div>
-      <p style="margin:0 0 1rem 0;font-size:0.875rem;color:{TEXT_MUTED};line-height:1.5;">{_escape(reason)}</p>
-      <div class="card-title">Top candidates</div>
-      <div style="margin-top:0.25rem;">{bars}</div>
-    </div>
-    """
-
-
-def format_improvement_html(result: Dict[str, Any]) -> str:
-    """Output optimize prompt come HTML."""
-    if not result.get("success"):
-        err = _escape(result.get("error", "Unknown error"))
-        return f"""
-        <div class="card" style="border-color: rgba(248,113,113,0.4);">
-          <div class="card-title" style="color: {ERROR};">Optimization failed</div>
-          <p style="margin:0;font-size:0.875rem;color:{TEXT_MUTED};">{err}</p>
-          <p style="margin:0.5rem 0 0;font-size:0.75rem;color:{TEXT_MUTED};">Ensure Ollama is running and the model is installed.</p>
-        </div>
-        """
-    improved = _escape(result.get("improved_prompt", ""))
-    elapsed = result.get("elapsed_time", 0)
-    return f"""
-    <div class="card" style="border-color: rgba(52,211,153,0.25);">
-      <div class="card-title" style="color: {SUCCESS};">Optimized prompt</div>
-      <p style="margin:0 0 0.5rem;font-size:0.75rem;color:{TEXT_MUTED};">Generated in {elapsed:.2f}s</p>
-      <div style="background:{BG_INPUT};border:1px solid {BORDER};border-radius:8px;padding:1rem;font-size:0.875rem;line-height:1.6;color:{TEXT};white-space:pre-wrap;">{improved}</div>
-    </div>
-    """
+    except requests.exceptions.Timeout:
+        logger.warning("TinyLlama timeout - restituendo prompt originale")
+        return prompt
+    except Exception as e:
+        logger.warning(f"Errore nel miglioramento del prompt: {e}")
+        return prompt
 
 
 def create_gradio_interface(config: Config, model_cache: ModelCache) -> gr.Blocks:
-    def improve_wrapper(prompt: str) -> Tuple[str, str, gr.update]:
-        if not prompt or not prompt.strip():
-            return (
-                f'<div class="card"><div class="card-title" style="color:{TEXT_MUTED};">Enter a prompt first</div><p style="margin:0;color:{TEXT_MUTED};">Type your request above, then click Optimize Prompt.</p></div>',
-                "",
-                gr.update(visible=False),
-            )
-        logger.info("Avvio miglioramento prompt...")
-        result = improve_prompt_with_ollama(prompt, config)
-        html_out = format_improvement_html(result)
-        improved = result.get("improved_prompt") or ""
-        return html_out, improved, gr.update(visible=bool(improved))
+    """Crea l'interfaccia web Gradio."""
+
+    custom_css = """
+    .gradio-container {
+        font-family: 'Inter', sans-serif !important;
+    }
+
+    .main-header {
+        text-align: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        border-radius: 1rem;
+        color: white;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border: none !important;
+        color: white !important;
+        font-weight: 600 !important;
+    }
+
+    .btn-secondary {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+        border: none !important;
+        color: white !important;
+        font-weight: 600 !important;
+    }
+    """
 
     def predict_wrapper(prompt: str) -> str:
+        """Wrapper per la predizione."""
         if not prompt or not prompt.strip():
-            return f'<div class="card"><div class="card-title" style="color:{TEXT_MUTED};">Enter a prompt</div><p style="margin:0;color:{TEXT_MUTED};">Type your request and click Route to AI.</p></div>'
-        result = predict_model(prompt, config, model_cache)
-        return format_prediction_html(result, config)
+            return "⚠️ **Inserisci un prompt per ottenere una predizione**"
 
-    theme = gr.themes.Base(
-        primary_hue="violet",
-        secondary_hue="slate",
+        result = predict_model(prompt, config, model_cache)
+        return format_prediction_output(result, config)
+
+    def improve_wrapper(prompt: str) -> str:
+        """Wrapper per il miglioramento del prompt."""
+        if not prompt or not prompt.strip():
+            return "⚠️ **Inserisci un prompt da migliorare**"
+
+        return improve_prompt_with_tinyllama(prompt, config)
+
+    theme = gr.themes.Soft(
+        primary_hue="purple",
+        secondary_hue="pink",
         neutral_hue="slate",
-    ).set(
-        body_background_fill=BG_DARK,
-        block_background_fill=BG_DARK,
-        block_border_color=BORDER,
-        block_label_background_fill=BG_CARD,
-        block_label_text_color=TEXT_MUTED,
-        block_title_text_color=TEXT,
-        button_primary_background_fill=ACCENT,
-        button_primary_background_fill_hover=ACCENT_HOVER,
-        button_primary_text_color=TEXT,
-        button_secondary_background_fill=BG_CARD,
-        button_secondary_text_color=TEXT,
-        input_background_fill=BG_INPUT,
-        input_border_color=BORDER,
-        input_placeholder_color=TEXT_MUTED,
-        body_text_color=TEXT,
+        font=["Inter", "sans-serif"],
     )
 
-    with gr.Blocks(
-        title="AI Router",
-        theme=theme,
-        css=CUSTOM_CSS,
-    ) as interface:
-        gr.HTML(f"""
-        <div class="app-header">
-          <h1 class="app-logo">AI <span>Router</span></h1>
-          <span class="status-pill">System ready</span>
+    with gr.Blocks(title="🤖 AI Router System", theme=theme, css=custom_css) as interface:
+        gr.HTML(
+            """
+        <div class="main-header">
+            <h1 style="margin: 0; font-size: 2.5rem; font-weight: 700;">
+                🤖 Sistema Router AI
+            </h1>
+            <p style="margin-top: 0.5rem; font-size: 1.1rem; opacity: 0.95;">
+                Trova il modello AI perfetto per il tuo prompt
+            </p>
         </div>
-        """)
+        """
+        )
 
-        with gr.Row():
-            with gr.Column(scale=3):
+        with gr.Row(equal_height=True):
+            with gr.Column(scale=1):
+                gr.Markdown("### 📝 Il Tuo Prompt")
+
                 prompt_input = gr.Textbox(
                     label="",
-                    placeholder="Paste or type your prompt. Optimize it first for better routing.",
+                    placeholder="✍️ Scrivi qui la tua domanda o richiesta...",
                     lines=6,
-                    max_lines=14,
+                    max_lines=12,
                     show_label=False,
-                    elem_classes=["prompt-input"],
                 )
+
                 with gr.Row():
                     improve_btn = gr.Button(
-                        "Optimize Prompt",
+                        "✨ Migliora Prompt",
                         variant="secondary",
                         size="lg",
                     )
                     predict_btn = gr.Button(
-                        "Route to AI",
+                        "🔍 Predici Modello",
                         variant="primary",
                         size="lg",
                     )
 
-                gr.HTML('<div class="card-title" style="margin-top:1.5rem;">Routing result</div>')
-                prediction_output = gr.HTML(
-                    value=f'<div class="card"><p style="margin:0;color:{TEXT_MUTED};">No result yet. Enter a prompt and click Route to AI.</p></div>',
-                    elem_id="prediction-output",
-                )
-
-            with gr.Column(scale=1):
-                gr.HTML('<div class="card-title">Optimized prompt</div>')
-                improvement_output = gr.HTML(
-                    value=f'<div class="card"><p style="margin:0;color:{TEXT_MUTED};">Optional. Click Optimize Prompt to refine your text before routing.</p></div>',
-                )
-                improved_prompt_box = gr.Textbox(
-                    label="",
-                    placeholder="Optimized text will appear here.",
-                    lines=5,
-                    max_lines=10,
-                    visible=False,
+                gr.Markdown("### 📊 Risultato")
+                prediction_output = gr.Markdown(
+                    value="*Inserisci un prompt e clicca su 'Predici Modello' o 'Migliora Prompt' per iniziare*",
                     show_label=False,
                 )
-                copy_btn = gr.Button(
-                    "Use in prompt",
-                    variant="secondary",
-                    size="sm",
-                    visible=False,
-                )
 
-        with gr.Accordion("Examples", open=False):
+        with gr.Accordion("💡 Esempi di Prompt", open=False):
             gr.Examples(
                 examples=[
-                    ["Write a Python function to compute Fibonacci numbers"],
-                    ["Explain quantum computing in simple terms"],
-                    ["Debug this code: print('Hello World')"],
-                    ["How do I optimize my database performance?"],
-                    ["Create a marketing plan for a new tech product"],
+                    ["Scrivi una funzione Python per calcolare i numeri di Fibonacci"],
+                    ["Spiega il quantum computing in termini semplici"],
+                    ["Genera una storia creativa su un viaggiatore nel tempo"],
+                    ["Debug questo codice: print('Ciao Mondo)"],
+                    ["Come posso ottimizzare le prestazioni del mio database?"],
                 ],
                 inputs=prompt_input,
                 label="",
             )
 
-        improve_btn.click(
-            fn=improve_wrapper,
-            inputs=prompt_input,
-            outputs=[improvement_output, improved_prompt_box, copy_btn],
-        )
-        copy_btn.click(
-            fn=lambda x: x,
-            inputs=improved_prompt_box,
-            outputs=prompt_input,
-        )
-        predict_btn.click(
-            fn=predict_wrapper,
-            inputs=prompt_input,
-            outputs=prediction_output,
-        )
+        with gr.Accordion("📚 Informazioni", open=False):
+            gr.Markdown(
+                f"""
+            ### 🎯 Come Funziona
+
+            - **Predizione:** SentenceTransformer + MLPClassifier
+            - **Soglia confidenza:** {config.CONFIDENCE_THRESHOLD:.0%}
+            """
+            )
+
+        improve_btn.click(fn=improve_wrapper, inputs=prompt_input, outputs=prompt_input)
+
+        predict_btn.click(fn=predict_wrapper, inputs=prompt_input, outputs=prediction_output)
+
         prompt_input.submit(
-            fn=predict_wrapper,
-            inputs=prompt_input,
-            outputs=prediction_output,
+            fn=predict_wrapper, inputs=prompt_input, outputs=prediction_output
         )
 
     return interface
