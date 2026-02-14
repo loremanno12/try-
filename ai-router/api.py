@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from cache import ModelCache
 from config import Config
 from predictor import predict_model, format_prediction_output
-from ui import improve_prompt_with_tinyllama
+from ollama_service import improve_prompt_with_ollama
 
 logger = logging.getLogger(__name__)
 
@@ -64,17 +64,23 @@ async def health_check():
 
 @app.post("/api/improve-prompt", response_model=ImprovedPromptResponse)
 async def improve_prompt(request: PromptRequest):
-    """Migliora un prompt usando TinyLlama."""
+    """Migliora un prompt usando Ollama."""
     try:
         if not request.prompt or not request.prompt.strip():
             raise HTTPException(status_code=400, detail="Prompt vuoto")
 
-        improved = improve_prompt_with_tinyllama(request.prompt, config)
+        result = improve_prompt_with_ollama(request.prompt, config)
+        
+        if result["success"]:
+            improved = result["improved_prompt"]
+        else:
+            improved = request.prompt  # fallback al prompt originale se fallisce
 
         return ImprovedPromptResponse(
             original=request.prompt,
             improved=improved,
-            success=True,
+            success=result["success"],
+            error=result["error"] if not result["success"] else None
         )
 
     except Exception as e:

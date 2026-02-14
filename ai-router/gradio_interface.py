@@ -7,50 +7,9 @@ import gradio as gr
 from cache import ModelCache
 from config import Config
 from predictor import predict_model, format_prediction_output
+from ollama_service import improve_prompt_with_ollama
 
 logger = logging.getLogger(__name__)
-
-
-def improve_prompt_with_tinyllama(prompt: str, config: Config) -> str:
-    """Migliora il prompt usando TinyLlama."""
-    if not prompt or not prompt.strip():
-        return prompt
-
-    try:
-        url = f"{config.OLLAMA_BASE_URL}/api/generate"
-
-        improvement_instruction = f"""Migliora questo prompt per renderlo più chiaro, specifico e efficace.
-Mantieni il significato originale ma rendi il prompt più dettagliato e preciso.
-Prompt originale: {prompt}
-
-Risposta: Fornisci solo il prompt migliorato senza ulteriori spiegazioni."""
-
-        payload = {
-            "model": config.OLLAMA_MODEL,
-            "prompt": improvement_instruction,
-            "stream": False,
-        }
-
-        response = requests.post(
-            url,
-            json=payload,
-            timeout=config.OLLAMA_TIMEOUT,
-        )
-
-        if response.status_code == 200:
-            result = response.json()
-            improved = result.get("response", "").strip()
-            return improved if improved else prompt
-        else:
-            logger.warning(f"TinyLlama API error: {response.status_code}")
-            return prompt
-
-    except requests.exceptions.Timeout:
-        logger.warning("TinyLlama timeout - restituendo prompt originale")
-        return prompt
-    except Exception as e:
-        logger.warning(f"Errore nel miglioramento del prompt: {e}")
-        return prompt
 
 
 def create_gradio_interface(config: Config, model_cache: ModelCache) -> gr.Blocks:
@@ -99,7 +58,12 @@ def create_gradio_interface(config: Config, model_cache: ModelCache) -> gr.Block
         if not prompt or not prompt.strip():
             return "⚠️ **Inserisci un prompt da migliorare**"
 
-        return improve_prompt_with_tinyllama(prompt, config)
+        result = improve_prompt_with_ollama(prompt, config)
+        if result["success"]:
+            return result["improved_prompt"]
+        else:
+            logger.warning(f"Errore nel miglioramento del prompt: {result['error']}")
+            return prompt  # fallback al prompt originale se fallisce
 
     theme = gr.themes.Soft(
         primary_hue="purple",
