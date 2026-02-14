@@ -18,7 +18,7 @@ from cache import ModelCache
 from config import Config
 from ollama_service import check_ollama_health
 from training import should_retrain, train_model
-from ui import create_gradio_interface
+from gradio_interface import create_gradio_interface
 
 logging.basicConfig(
     level=logging.INFO,
