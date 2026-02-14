@@ -42,17 +42,33 @@ def predict_model(
 
 
 def format_prediction_output(result: Dict[str, Any], config: Config) -> str:
+    """Formatta il risultato della predizione per la visualizzazione."""
     if not result["success"]:
         return f"❌ **Errore:** {result['error']}"
-    output = "### 🎯 Modello Consigliato\n\n"
-    output += f"**{result['predicted_model']}**\n\n📊 Confidenza: **{result['confidence']:.1%}**\n\n"
+
+    output = f"### 🎯 Modello Consigliato\n\n"
+    output += f"**{result['predicted_model']}**\n\n"
+    output += f"📊 Confidenza: **{result['confidence']:.1%}**\n\n"
+
     if result.get("all_probabilities"):
-        output += "---\n\n### 📈 Top 3 Modelli\n\n"
-        sorted_probs = sorted(result["all_probabilities"].items(), key=lambda x: x[1], reverse=True)[: config.TOP_N_PREDICTIONS]
+        output += "---\n\n"
+        output += "### 📈 Top 3 Modelli\n\n"
+
+        sorted_probs = sorted(
+            result["all_probabilities"].items(), key=lambda x: x[1], reverse=True
+        )[: config.TOP_N_PREDICTIONS]
+
         for i, (model, prob) in enumerate(sorted_probs, 1):
             medal = "🥇" if i == 1 else "🥈" if i == 2 else "🥉"
-            bar = "█" * int(prob * 20) + "░" * (20 - int(prob * 20))
-            output += f"{medal} **{model}**\n`{bar}` {prob:.1%}\n\n"
+            bar_length = int(prob * 20)
+            bar = "█" * bar_length + "░" * (20 - bar_length)
+
+            output += f"{medal} **{model}**\n"
+            output += f"`{bar}` {prob:.1%}\n\n"
+
     if result["confidence"] < config.CONFIDENCE_THRESHOLD:
-        output += f"\n---\n\n⚠️ Confidenza sotto {config.CONFIDENCE_THRESHOLD:.0%}. Migliora il prompt.\n"
+        output += "\n---\n\n"
+        output += f"⚠️ **Attenzione:** Confidenza sotto la soglia del {config.CONFIDENCE_THRESHOLD:.0%}. "
+        output += "Considera di migliorare il prompt per risultati più accurati.\n"
+
     return output
