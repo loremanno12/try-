@@ -1,0 +1,45 @@
+services:
+
+  dashboard-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dashboard-api
+    environment:
+      - PIHOLE_URL=http://pihole:80
+      - PIHOLE_API_KEY=${PIHOLE_API_KEY:-}
+      - FLASK_ENV=production
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /opt/vc:/opt/vc:ro
+    networks:
+      - internal_net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+  dashboard-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: dashboard-frontend
+    networks:
+      - internal_net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
+    restart: unless-stopped
+
+networks:
+  internal_net:
+    external: true
